@@ -27,9 +27,9 @@
 #define PIN_Trigger 8
 #define PIN_Echo    9
 #define PIN_NoiseSensor A6
-#define ledR 16 //A2 Red led
-#define ledG 14 //A0 Green led
-#define ledB 15 //A1 Blue led 
+#define ledR 14 //A2 Red led
+#define ledG 15 //A0 Green led
+#define ledB 16 //A1 Blue led 
 
 
 class Otto
