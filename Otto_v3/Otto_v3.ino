@@ -1207,6 +1207,9 @@ void OttoSleeping_withInterrupts() {
       break;
     }
     Otto.putAnimationMouth(dreamMouth, 0);
+    digitalWrite(ledR, HIGH);
+    digitalWrite(ledG, HIGH);
+    digitalWrite(ledB, HIGH);
     Otto.bendTones (100, 200, 1.04, 10, 10);
 
     if (buttonPushed) {
@@ -1227,6 +1230,9 @@ void OttoSleeping_withInterrupts() {
       break;
     }
     Otto.putAnimationMouth(dreamMouth, 1);
+    digitalWrite(ledR, LOW);
+    digitalWrite(ledG, LOW);
+    digitalWrite(ledB, LOW);
     Otto.bendTones (400, 250, 1.04, 10, 1);
 
     if (buttonPushed) {

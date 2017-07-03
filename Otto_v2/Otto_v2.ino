@@ -22,10 +22,10 @@
 //Enabled pin interrupts on serial connection because else we can't exit serial mode without reset
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Modified voltage reading to use internal voltage reading - works only if not using step up converter.        //
-//If using step up you have to connect additional + from battery to A7 pin and uncomment #include <BatReader.h>// 
+//If using step up you have to connect additional + from battery to A7 pin and uncomment #include <BatReader.h>//
 //and change reading in requestBattery(); and OttoLowBatteryAlarm();                                           //
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//  
+//
 // - by Davor Levstek
 //-----------------------------------------------------------------
 
@@ -174,14 +174,14 @@ void setup() {
   SCmd.addDefaultHandler(receiveStop);
 
   //Otto wake up!
-  digitalWrite(ledR, random(2));
-  digitalWrite(ledG, random(2));
-  digitalWrite(ledB, random(2));
+  //digitalWrite(ledR, random(2));
+  //digitalWrite(ledG, random(2));
+  //digitalWrite(ledB, random(2));
   Otto.sing(S_connection);
   delay(500);
-  digitalWrite(ledR, random(2));
-  digitalWrite(ledG, random(2));
-  digitalWrite(ledB, random(2));
+  //digitalWrite(ledR, random(2));
+  //digitalWrite(ledG, random(2));
+  //digitalWrite(ledB, random(2));
   Otto.home();
 
 
@@ -281,9 +281,9 @@ void loop() {
   if (buttonPushed) {
 
     Otto.home();
-    digitalWrite(ledR, random(2));
-    digitalWrite(ledG, random(2));
-    digitalWrite(ledB, random(2));
+    //digitalWrite(ledR, random(2));
+    //digitalWrite(ledG, random(2));
+    //digitalWrite(ledB, random(2));
     delay(100); //Wait for all buttons
     Otto.sing(S_buttonPushed);
     delay(200); //Wait for all buttons
@@ -300,7 +300,7 @@ void loop() {
       MODE = 3;  //else
       Otto.sing(S_mode3);
     }
-
+    Otto.putMouth(MODE);
     int showTime = 1500;
     while ((showTime > 0)) { //Wait to show the MODE number
 
@@ -324,13 +324,13 @@ void loop() {
 
         //Every 80 seconds in this mode, Otto falls asleep
         if (millis() - previousMillis >= 80000) {
-          digitalWrite(ledR, HIGH);
-          digitalWrite(ledG, LOW);
-          digitalWrite(ledB, LOW);
+          //digitalWrite(ledR, HIGH);
+          //digitalWrite(ledG, LOW);
+          //digitalWrite(ledB, LOW);
           OttoSleeping_withInterrupts(); //ZZzzzzz...
-          digitalWrite(ledR, random(2));
-          digitalWrite(ledG, random(2));
-          digitalWrite(ledB, random(2));
+          //digitalWrite(ledR, random(2));
+          //digitalWrite(ledG, random(2));
+          //digitalWrite(ledB, random(2));
           previousMillis = millis();
         }
 
@@ -352,9 +352,9 @@ void loop() {
         }
 
         Otto.putMouth(random(10, 21));
-        digitalWrite(ledR, random(2));
-        digitalWrite(ledG, random(2));
-        digitalWrite(ledB, random(2));
+        //digitalWrite(ledR, random(2));
+        //digitalWrite(ledG, random(2));
+        //digitalWrite(ledB, random(2));
         for (int i = 0; i < randomSteps; i++) {
           move(randomDance);
           if (buttonPushed) {
@@ -368,9 +368,9 @@ void loop() {
       //---------------------------------------------------------
       case 2:
         if (obstacleDetected) {
-          digitalWrite(ledR, HIGH);
-          digitalWrite(ledG, LOW);
-          digitalWrite(ledB, LOW);
+          //digitalWrite(ledR, HIGH);
+          //digitalWrite(ledG, LOW);
+          //digitalWrite(ledB, LOW);
           if (!buttonPushed) {
             Otto.putMouth(bigSurprise);
             Otto.sing(S_surprise);
@@ -387,9 +387,9 @@ void loop() {
             if (buttonPushed) {
               break;
             }
-            digitalWrite(ledR, random(2));
-            digitalWrite(ledG, random(2));
-            digitalWrite(ledB, random(2));
+            //digitalWrite(ledR, random(2));
+            //digitalWrite(ledG, random(2));
+            //digitalWrite(ledB, random(2));
             Otto.walk(1, 1300, -1);
           }
 
@@ -405,9 +405,9 @@ void loop() {
           else {
             Otto.putMouth(smile);
             delay(50);
-            digitalWrite(ledR, random(2));
-            digitalWrite(ledG, random(2));
-            digitalWrite(ledB, random(2));
+            //digitalWrite(ledR, random(2));
+            //digitalWrite(ledG, random(2));
+            //digitalWrite(ledB, random(2));
             obstacleDetector();
           }
 
@@ -418,9 +418,9 @@ void loop() {
               break;
             }
             else {
-              digitalWrite(ledR, random(2));
-              digitalWrite(ledG, random(2));
-              digitalWrite(ledB, random(2));
+              //digitalWrite(ledR, random(2));
+              //digitalWrite(ledG, random(2));
+              //digitalWrite(ledB, random(2));
               Otto.turn(1, 1000, 1);
               obstacleDetector();
             }
@@ -432,9 +432,9 @@ void loop() {
           }
           else {
             Otto.home();
-            digitalWrite(ledR, random(2));
-            digitalWrite(ledG, random(2));
-            digitalWrite(ledB, random(2));
+            //digitalWrite(ledR, random(2));
+            //digitalWrite(ledG, random(2));
+            //digitalWrite(ledB, random(2));
             Otto.putMouth(happyOpen);
             Otto.sing(S_happy_short);
             delay(200);
@@ -457,9 +457,9 @@ void loop() {
         if (Otto.getNoise() >= 600) { //740
           delay(50);  //Wait for the possible 'lag' of the button interruptions.
           //Sometimes, the noise sensor detect the button before the interruption takes efect
-          digitalWrite(ledR, HIGH);
-          digitalWrite(ledG, LOW);
-          digitalWrite(ledB, LOW);
+          //digitalWrite(ledR, HIGH);
+          //digitalWrite(ledG, LOW);
+          //digitalWrite(ledB, LOW);
           if (!buttonPushed) {
 
             Otto.putMouth(bigSurprise);
@@ -472,9 +472,9 @@ void loop() {
             randomDance = random(5, 21);
             move(randomDance);
             Otto.home();
-            digitalWrite(ledR, random(2));
-            digitalWrite(ledG, random(2));
-            digitalWrite(ledB, random(2));
+            //digitalWrite(ledR, random(2));
+            //digitalWrite(ledG, random(2));
+            //digitalWrite(ledB, random(2));
             delay(200); //Wait for possible noise of the servos while get home
           }
 
@@ -1119,11 +1119,11 @@ void requestNoise() {
 void requestBattery() {
 
   Otto.home();  //stop if necessary
-  
+
   int batteryLevel = ((readVcc() / 1000.00) * SLOPE) - OFFSET;
-  
+
   //double batteryLevel = Otto.getBatteryLevel(); //uncomment this one and comment out above one when using step up converter
-  
+
   if (batteryLevel > 100) {
     batteryLevel = 100;
   };
@@ -1179,31 +1179,32 @@ void sendFinalAck() {
 //--------------------------------------------------------
 
 void OttoLowBatteryAlarm() {
-  
+
   int batteryLevel = ((readVcc() / 1000.00) * SLOPE) - OFFSET;
-  
+
   //double batteryLevel = Otto.getBatteryLevel(); //uncomment this one and comment out above one when using step up converter
-  
+
   if (batteryLevel < 30) {
     while (!buttonPushed) {
-      digitalWrite(ledR, LOW);
-      digitalWrite(ledG, LOW);
-      digitalWrite(ledB, LOW);
+      //digitalWrite(ledR, LOW);
+      //digitalWrite(ledG, LOW);
+      //digitalWrite(ledB, LOW);
       Otto.putMouth(thunder);
       Otto.bendTones (880, 2000, 1.04, 8, 3);  //A5 = 880
       delay(30);
       Otto.bendTones (2000, 880, 1.02, 8, 3);  //A5 = 880
       Otto.clearMouth();
       delay(300);
-      digitalWrite(ledR, HIGH);
-      digitalWrite(ledG, LOW);
-      digitalWrite(ledB, LOW);
+      //digitalWrite(ledR, HIGH);
+      //digitalWrite(ledG, LOW);
+      //digitalWrite(ledB, LOW);
       delay(500);
     }
   }
 }
 
 void OttoSleeping_withInterrupts() {
+
   int bedPos_0[4] = {100, 80, 60, 120}; //{100, 80, 40, 140}
 
   if (!buttonPushed) {
@@ -1215,6 +1216,9 @@ void OttoSleeping_withInterrupts() {
     if (buttonPushed) {
       break;
     }
+    digitalWrite(ledR, HIGH);
+    digitalWrite(ledG, HIGH);
+    digitalWrite(ledB, HIGH);
     Otto.putAnimationMouth(dreamMouth, 0);
     Otto.bendTones (100, 200, 1.04, 10, 10);
 
@@ -1231,7 +1235,9 @@ void OttoSleeping_withInterrupts() {
     Otto.bendTones (300, 500, 1.04, 10, 10);
 
     delay(500);
-
+    digitalWrite(ledR, LOW);
+    digitalWrite(ledG, LOW);
+    digitalWrite(ledB, LOW);
     if (buttonPushed) {
       break;
     }
