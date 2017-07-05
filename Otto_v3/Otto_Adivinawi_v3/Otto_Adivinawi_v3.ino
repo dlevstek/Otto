@@ -22,7 +22,7 @@ OttoSerialCommand SCmd;  //The SerialCommand object
 Otto Otto;  //This is Otto!!
 
 //--Configuring LEDMatrix display
-MaxMatrix ledmatrix = MaxMatrix(12, 13, 11, 1); // DIN=12 CS=13 CLK=11
+MaxMatrix ledmatrix = MaxMatrix(10, 11, 12, 1); // DIN=10 CS=11 CLK=12
 
 //---------------------------------------------------------
 //-- Configuration of pins where the servos are attached
