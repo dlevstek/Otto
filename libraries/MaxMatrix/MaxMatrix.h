@@ -31,7 +31,7 @@ class MaxMatrix
     byte load;
     byte clock;
     byte num;
-    byte buffer[35];
+    byte buffer[10];
     
     void reload();
 	

@@ -545,7 +545,7 @@ int Otto::getNoise(){
 
   int noiseLevel = 0;
   int noiseReadings = 0;
-  int numReadings = 2;  
+  int numReadings = 10;  
 
     noiseLevel = analogRead(pinNoiseSensor);
 
